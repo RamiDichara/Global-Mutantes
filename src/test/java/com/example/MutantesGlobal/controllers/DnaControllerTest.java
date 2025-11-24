@@ -1,6 +1,5 @@
 package com.example.MutantesGlobal.controllers;
 
-import com.example.MutantesGlobal.dto.DnaRequest;
 import com.example.MutantesGlobal.services.DnaService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ class DnaControllerTest {
 
         when(dnaService.isMutant(any())).thenReturn(true);
 
-        mockMvc.perform(post("/mutant")
+        mockMvc.perform(post("/mutant/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isOk());
@@ -40,7 +39,7 @@ class DnaControllerTest {
 
         when(dnaService.isMutant(any())).thenReturn(false);
 
-        mockMvc.perform(post("/mutant")
+        mockMvc.perform(post("/mutant/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isForbidden());

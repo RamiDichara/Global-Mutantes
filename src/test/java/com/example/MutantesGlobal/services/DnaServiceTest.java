@@ -17,10 +17,12 @@ class DnaServiceTest {
     @Test
     void testMutantHorizontal() {
         String[] dna = {
-                "AAAA",
-                "CAGT",
-                "TTAT",
-                "AGAC"
+                "ATTTTT",   // ← Fila mutante (TTTT)
+                "CAGTGC",
+                "TTATGT",
+                "AGAAGG",
+                "CCCCTA",
+                "TCACTG"
         };
         assertTrue(dnaService.isMutant(dna));
     }
@@ -39,10 +41,11 @@ class DnaServiceTest {
     @Test
     void testMutantDiagonal() {
         String[] dna = {
-                "ATGC",
-                "CAGT",
-                "TATA",
-                "GAAA"
+                "ATGCA",
+                "CAGTC",
+                "TTATG",
+                "GAAAA",
+                "ACTAG"
         };
         assertTrue(dnaService.isMutant(dna));
     }
@@ -52,7 +55,7 @@ class DnaServiceTest {
         String[] dna = {
                 "ATGC",
                 "CAGT",
-                "TTAT",
+                "TGAT",
                 "AGAC"
         };
         assertFalse(dnaService.isMutant(dna));
