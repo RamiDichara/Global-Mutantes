@@ -57,5 +57,5 @@ class DnaServiceTest {
         };
         assertFalse(dnaService.isMutant(dna));
     }
-    
+
 }
