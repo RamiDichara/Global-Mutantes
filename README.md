@@ -59,28 +59,22 @@ Agregar:
 "ratio": X/Y
 }
 
-🛠 Tecnologías Utilizadas
+## 🛠 Tecnologías Utilizadas
 
-Java 17
+*Java 17
+*Spring Boot
+*Spring Web
+*Spring Data JPA
+*Base de datos H2
+*Maven
+*JUnit 5
+*Mockito
 
-Spring Boot
-
-Spring Web
-
-Spring Data JPA
-
-Base de datos H2
-
-Maven
-
-JUnit 5
-
-Mockito
-
-🧱 Arquitectura General del Proyecto
+## 🧱 Arquitectura General del Proyecto
 
 Tu proyecto quedó organizado así:
 
+```bash
 example/
 ├── controllers/
 │     ├── DnaController.java       → /mutant
@@ -108,76 +102,89 @@ example/
 │
 └── ParcialMagnetoApplication.java → clase principal de Spring Boot
 
-🌐 Endpoints de la API
-POST /mutant
+```
+
+## 🌐 Endpoints de la API
+### POST /mutant
 
 Evalúa si un humano es mutante.
 
 ✔ 200 OK → Mutante
 ✘ 403 Forbidden → No mutante
 ⚠ 400 Bad Request → ADN inválido
-GET /stats
+
+### GET /stats
 
 Devuelve estadísticas acumuladas:
 
+```bash
 {
 "count_mutant_dna": 10,
 "count_human_dna": 15,
 "ratio": 0.666
 }
+```
 
-📤 Ejemplos de Requests
-➤ POST /mutant (mutante)
+## 📤 Ejemplos de Requests
+### ➤ POST /mutant (mutante)
+````bash
 POST http://localhost:8080/mutant
 Content-Type: application/json
-
+```
+```bash
 {
 "dna": ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]
 }
-
+```
 
 📥 Respuesta:
-
+```bash
 200 OK
-
-➤ POST /mutant (no mutante)
+ ```
+ 
+### ➤ POST /mutant (no mutante)
+```bash
 {
 "dna": ["ATGCGA","CAGTGC","TTATTT","AGACGG","GCGTCA","TCACTG"]
 }
-
+```
 
 📥 Respuesta:
 
+```bash
 403 Forbidden
+```
 
-➤ POST /mutant (ADN inválido)
+### ➤ POST /mutant (ADN inválido)
+```bash
 {
 "dna": ["ATGZGA","CAGTGC"]
 }
-
+```
 
 📥 Respuesta:
-
+```bash
 400 Bad Request
+```
 
-🗄 Base de Datos H2
+## 🗄 Base de Datos H2
 
 Configurada en application.properties:
-
+```bash
 spring.datasource.url=jdbc:h2:mem:mutantesdb
 spring.jpa.hibernate.ddl-auto=update
 spring.h2.console.enabled=true
-
+```
 
 La consola está disponible en:
-
+```bash
 http://localhost:8080/h2-console
-
+```
 
 Usuario: sa
 Contraseña: (vacía)
 
-🧪 Test Automáticos
+## 🧪 Test Automáticos
 
 Incluye:
 
@@ -187,51 +194,54 @@ Incluye:
 ✔ Tests del /mutant y /stats
 
 Para ejecutarlos:
-
+```bash
 mvn test
+```
 
-🚀 Cómo Ejecutar el Proyecto
+## 🚀 Cómo Ejecutar el Proyecto
 
-Clonar el repo:
-
+1. Clonar el repo:
+```bash
 git clone <url-repositorio>
+```
 
-
-Acceder al proyecto:
-
+2. Acceder al proyecto:
+```bash
 cd MutantesGlobal
+```
 
-
-Ejecutar:
-
+3. Ejecutar:
+```bash
 mvn spring-boot:run
-
+```
 
 La API quedará disponible en:
-
+```bash
 http://localhost:8080
+```
 
-☁️ Despliegue en Render
+## ☁️ Despliegue en Render
 
 En un servicio web:
 
 Build Command:
-
+```bash
 mvn clean install
-
+```
 
 Start Command:
-
+```bash
 java -jar target/MutantesGlobal-0.0.1-SNAPSHOT.jar
-
+```
 
 Endpoints públicos:
 
 https://<render-url>/mutant
 https://<render-url>/stats
+```
 
-👤 Autor
+## 👤 Autor
 
 Ramiro Dichara
-Proyecto desarrollado para el examen de MercadoLibre y la cátedra correspondiente.
+Proyecto desarrollado para el examen Global de Desarrollo.
 Implementación completa, validada y lista para despliegue.
