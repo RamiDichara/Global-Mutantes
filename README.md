@@ -6,17 +6,29 @@ Implementado con Spring Boot, validadores, servicios, API REST, H2, JPA y tests 
 ## 📘 Índice
 
 1- Descripción del Problema
+
 2- Requerimientos por Nivel
+
 3- Tecnologías Utilizadas
+
 4- Arquitectura General del Proyecto
+
 5- Endpoints de la API
+
 6- Ejemplos de Requests
+
 7- Base de Datos H2
+
 8- Test Automáticos
+
 9- Cómo Ejecutar el Proyecto
+
 10- Despliegue en Render
+
 11- Estructura del Proyecto
+
 12- Autor
+
 
 ## 🧩 Descripción del Problema
 
