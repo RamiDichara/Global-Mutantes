@@ -235,7 +235,7 @@ java -jar target/MutantesGlobal-0.0.1-SNAPSHOT.jar
 ```
 
 Endpoints públicos:
-
+```bash
 https://<render-url>/mutant
 https://<render-url>/stats
 ```
