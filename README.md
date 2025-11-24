@@ -1,35 +1,24 @@
-🧬 MutantesGlobal – Detector de Mutantes (Examen MercadoLibre)
+# 🧬 MutantesGlobal – Detector de Mutantes (Examen MercadoLibre)
 
 Proyecto desarrollado para la detección de mutantes en base a secuencias de ADN según el desafío propuesto por MercadoLibre.
 Implementado con Spring Boot, validadores, servicios, API REST, H2, JPA y tests automáticos.
 
-📘 Índice
+## 📘 Índice
 
-Descripción del Problema
+1- Descripción del Problema
+2- Requerimientos por Nivel
+3- Tecnologías Utilizadas
+4- Arquitectura General del Proyecto
+5- Endpoints de la API
+6- Ejemplos de Requests
+7- Base de Datos H2
+8- Test Automáticos
+9- Cómo Ejecutar el Proyecto
+10- Despliegue en Render
+11- Estructura del Proyecto
+12- Autor
 
-Requerimientos por Nivel
-
-Tecnologías Utilizadas
-
-Arquitectura General del Proyecto
-
-Endpoints de la API
-
-Ejemplos de Requests
-
-Base de Datos H2
-
-Test Automáticos
-
-Cómo Ejecutar el Proyecto
-
-Despliegue en Render
-
-Estructura del Proyecto
-
-Autor
-
-🧩 Descripción del Problema
+## 🧩 Descripción del Problema
 
 Magneto busca identificar mutantes mediante el análisis de secuencias de ADN.
 Un humano es considerado mutante si en su secuencia de ADN se encuentran más de una secuencia de cuatro letras iguales consecutivas, en alguna de las siguientes direcciones:
@@ -44,30 +33,25 @@ Diagonal ↙
 
 Las letras válidas del ADN son: A, T, C, G.
 
-📜 Requerimientos por Nivel
-Nivel 1 – Algoritmo
+## 📜 Requerimientos por Nivel
+### Nivel 1 – Algoritmo
 
 Implementar la función que evalúa si un ADN corresponde a un mutante.
 
-Nivel 2 – API REST
+### Nivel 2 – API REST
 
 Exponer un endpoint /mutant que acepte un JSON con el ADN y devuelva:
 
-200 OK si es mutante
+* 200 OK si es mutante
+* 403 Forbidden si no es mutante
 
-403 Forbidden si no es mutante
-
-Nivel 3 – Persistencia y Estadísticas
+### Nivel 3 – Persistencia y Estadísticas
 
 Agregar:
-
-Base de datos H2
-
-Entidad Dna
-
-Evitar guardar ADN duplicado
-
-Endpoint /stats que devuelva:
+*Base de datos H2
+*Entidad Dna
+*Evitar guardar ADN duplicado
+*Endpoint /stats que devuelva:
 
 {
 "count_mutant_dna": X,
