@@ -87,33 +87,44 @@ Agregar:
 Tu proyecto quedó organizado así:
 
 ```bash
-example/
-├── controllers/
-│     ├── DnaController.java       → /mutant
-│     ├── StatsController.java     → /stats
-│
-├── dto/
-│     ├── DnaRequiest.java         → request del ADN
-│     ├── DnaResponse.java         → respuesta del /mutant
-│     └── StatsResponse.java       → respuesta del /stats
-│
-├── entities/
-│     ├── Base.java                → clase base con campos comunes
-│     ├── Dna.java                 → entidad que representa el ADN almacenado
-│
-├── repositories/
-│     └── DnaRepository.java       → operaciones JPA contra H2
-│
-├── services/
-│     ├── DnaService.java          → lógica de detección + guardado
-│     └── StatsService.java        → estadísticas
-│
-├── validators/
-│     ├── DnaValidator.java        → validaciones del ADN
-│     └── ValidDna.java            → anotación personalizada
-│
-└── ParcialMagnetoApplication.java → clase principal de Spring Boot
-
+  src/
+   ├── main/    
+   │     ├── com.example/
+   │     │    ├── controllers/
+   │     │    │     ├── DnaController.java       → /mutant
+   │     │    │     ├── StatsController.java     → /stats
+   │     │    │
+   │     │    ├── dto/
+   │     │    │     ├── DnaRequiest.java         → request del ADN
+   │     │    │     ├── DnaResponse.java         → respuesta del /mutant
+   │     │    │     └── StatsResponse.java       → respuesta del /stats
+   │     │    │
+   │     │    ├── entities/
+   │     │    │     ├── Base.java                → clase base con campos comunes
+   │     │    │     ├── Dna.java                 → entidad que representa el ADN almacenado
+   │     │    │
+   │     │    ├── repositories/
+   │     │    │     └── DnaRepository.java       → operaciones JPA contra H2
+   │     │    │
+   │     │    ├── services/
+   │     │    │     ├── DnaService.java          → lógica de detección + guardado
+   │     │    │     └── StatsService.java        → estadísticas
+   │     │    │
+   │     │    ├── validators/
+   │     │    │     ├── DnaValidator.java        → validaciones del ADN
+   │     │    │     └── ValidDna.java            → anotación personalizada
+   │     │    │
+   │     │    └── ParcialMagnetoApplication.java → clase principal de Spring Boot
+   │     └── resources/
+   │         └── application.properties.java
+   └── test/
+        ├──java.com.exmple.MutantesGlobal/
+        │   ├── controllers/
+        │   │   ├──DnaControllerTest.java
+        │   │   └──StatsControllerTest.java
+        │   └── services/
+        │       └──DnaServiceTest.java 
+        └──MutantesGlobalApplicationTest.java    
 ```
 
 ## 🌐 Endpoints de la API
