@@ -15,15 +15,15 @@ public class DnaController {
 
     private final DnaService dnaService;
 
-    @PostMapping
+    @PostMapping(value = "/", consumes = "application/json")
     public ResponseEntity<Void> isMutant(@Valid @RequestBody DnaRequest dnaRequest) {
-        boolean mutant = dnaService.isMutant(dnaRequest.getDna());
 
-        if (mutant) {
-            return ResponseEntity.ok().build(); // HTTP 200
-        } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build(); // HTTP 403
-        }
+        boolean mutant = dnaService.isMutant(dnaRequest.getDna());
+        dnaService.saveDna(mutant, dnaRequest.getDna());
+
+        return mutant
+                ? ResponseEntity.ok().build()
+                : ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 }
 

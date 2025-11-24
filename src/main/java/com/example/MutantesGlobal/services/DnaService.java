@@ -2,23 +2,24 @@ package com.example.MutantesGlobal.services;
 
 import com.example.MutantesGlobal.entities.Dna;
 import com.example.MutantesGlobal.repositories.DnaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+@RequiredArgsConstructor
 @Service
 public class DnaService {
 
-    @Autowired
-    private DnaRepository dnaRepository;
+    private final DnaRepository dnaRepository;
 
     private static final int SEQ = 4;
-    private static final char[] VALID_CHARS = {'A', 'T', 'C', 'G'};
 
+    // ========================================================
+    //       ALGORITMO PRINCIPAL PARA DETECTAR MUTANTE
+    // ========================================================
     public boolean isMutant(String[] dna) {
-        validateDna(dna);
-
         int n = dna.length;
         char[][] matrix = toMatrix(dna);
 
@@ -45,47 +46,21 @@ public class DnaService {
         return count > 1;
     }
 
-    // -------------------------
-    // VALIDACIONES
-    // -------------------------
-
-    private void validateDna(String[] dna) {
-        if (dna == null || dna.length == 0)
-            throw new IllegalArgumentException("El ADN no puede ser nulo o vacío.");
-
-        int n = dna.length;
-
-        for (String row : dna) {
-            if (row.length() != n)
-                throw new IllegalArgumentException("El ADN debe ser una matriz NxN.");
-
-            for (char c : row.toCharArray()) {
-                if (!isValidChar(c))
-                    throw new IllegalArgumentException("ADN contiene caracteres inválidos: " + c);
-            }
-        }
-    }
-
-    private boolean isValidChar(char c) {
-        for (char valid : VALID_CHARS) {
-            if (valid == c) return true;
-        }
-        return false;
-    }
-
+    // ========================================================
+    //                     CONVERTIR MATRIZ
+    // ========================================================
     private char[][] toMatrix(String[] dna) {
         int n = dna.length;
         char[][] matrix = new char[n][n];
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++) {
             matrix[i] = dna[i].toCharArray();
+        }
         return matrix;
     }
 
-
-    // -------------------------
-    // BÚSQUEDA DE SECUENCIAS
-    // -------------------------
-
+    // ========================================================
+    //                     BUSCAR SECUENCIA HORIZONTAL
+    // ========================================================
     private int countRow(char[][] m, int row) {
         int n = m.length;
         int count = 0, seq = 1;
@@ -101,6 +76,9 @@ public class DnaService {
         return count;
     }
 
+    // ========================================================
+    //                     BUSCAR SECUENCIA VERTICAL
+    // ========================================================
     private int countColumn(char[][] m, int col) {
         int n = m.length;
         int count = 0, seq = 1;
@@ -116,66 +94,82 @@ public class DnaService {
         return count;
     }
 
+    // ========================================================
+    //                     DIAGONAL ↘ (derecha)
+    // ========================================================
     private int countDiagonalRight(char[][] m) {
         int n = m.length;
         int count = 0;
 
-        // diagonales que empiezan en primera fila
+        // Diagonales que empiezan en primera fila
         for (int colStart = 0; colStart < n - 3; colStart++) {
             int seq = 1;
             for (int i = 1; i < n - colStart; i++) {
                 if (m[i][colStart + i] == m[i - 1][colStart + i - 1]) {
                     seq++;
                     if (seq == SEQ) count++;
-                } else seq = 1;
+                } else {
+                    seq = 1;
+                }
             }
         }
 
-        // diagonales que empiezan en primera columna (excepto 0,0)
+        // Diagonales que empiezan en primera columna (excepto 0,0)
         for (int rowStart = 1; rowStart < n - 3; rowStart++) {
             int seq = 1;
             for (int i = 1; i < n - rowStart; i++) {
                 if (m[rowStart + i][i] == m[rowStart + i - 1][i - 1]) {
                     seq++;
                     if (seq == SEQ) count++;
-                } else seq = 1;
+                } else {
+                    seq = 1;
+                }
             }
         }
 
         return count;
     }
 
+    // ========================================================
+    //                     DIAGONAL ↙ (izquierda)
+    // ========================================================
     private int countDiagonalLeft(char[][] m) {
         int n = m.length;
         int count = 0;
 
-        // diagonales que empiezan en la primera fila
+        // Diagonales que empiezan en la primera fila
         for (int colStart = 3; colStart < n; colStart++) {
             int seq = 1;
             for (int i = 1; i <= colStart; i++) {
                 if (m[i][colStart - i] == m[i - 1][colStart - (i - 1)]) {
                     seq++;
                     if (seq == SEQ) count++;
-                } else seq = 1;
+                } else {
+                    seq = 1;
+                }
             }
         }
 
-        // diagonales que empiezan en la última columna (excepto fila 0)
+        // Diagonales que empiezan en la última columna (excepto fila 0)
         for (int rowStart = 1; rowStart < n - 3; rowStart++) {
             int seq = 1;
             for (int i = 1; rowStart + i < n; i++) {
                 if (m[rowStart + i][n - 1 - i] == m[rowStart + i - 1][n - i]) {
                     seq++;
                     if (seq == SEQ) count++;
-                } else seq = 1;
+                } else {
+                    seq = 1;
+                }
             }
         }
 
         return count;
     }
 
-    public void saveDna(String[] dna) {
-        boolean mutant = isMutant(dna);
+    // ========================================================
+    //                   GUARDAR ADN EN LA BD
+    // ========================================================
+    public void saveDna(boolean mutant, String[] dna) {
         String hash = hashDna(dna);
 
         dnaRepository.findByHash(hash).orElseGet(() -> {
@@ -184,6 +178,9 @@ public class DnaService {
         });
     }
 
+    // ========================================================
+    //                        HASH (SHA-256)
+    // ========================================================
     private String hashDna(String[] dna) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -197,6 +194,11 @@ public class DnaService {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Error generando hash ADN", e);
         }
+    }
+
+    //Constructor vacío solo para tests
+    public DnaService() {
+        this.dnaRepository = null;
     }
 
 }

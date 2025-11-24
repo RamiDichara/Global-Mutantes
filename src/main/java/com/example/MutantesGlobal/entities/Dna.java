@@ -6,27 +6,26 @@ import lombok.*;
 import java.util.Objects;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "dna")
 @Getter
 @Setter
-@Builder
-@Table(name = "dna")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Dna {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter
     @Column(unique = true, nullable = false, length = 1000)
-    private String hash; // Hash único del ADN
+    private String hash;
 
-    @Setter
     @Column(nullable = false)
     private boolean mutant;
 
     public Dna(String hash, boolean mutant) {
+        this.hash = hash;
+        this.mutant = mutant;
     }
 
     @Override
