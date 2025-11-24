@@ -127,7 +127,7 @@ Devuelve estadísticas acumuladas:
 
 ## 📤 Ejemplos de Requests
 ### ➤ POST /mutant (mutante)
-````bash
+```bash
 POST http://localhost:8080/mutant
 Content-Type: application/json
 ```
