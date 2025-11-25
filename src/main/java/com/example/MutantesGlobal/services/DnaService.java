@@ -196,9 +196,5 @@ public class DnaService {
         }
     }
 
-    //Constructor vacío solo para tests
-    public DnaService() {
-        this.dnaRepository = null;
-    }
 
 }

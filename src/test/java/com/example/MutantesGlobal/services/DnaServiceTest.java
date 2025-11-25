@@ -1,17 +1,22 @@
 package com.example.MutantesGlobal.services;
 
+import com.example.MutantesGlobal.repositories.DnaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DnaServiceTest {
 
     private DnaService dnaService;
+    private DnaRepository dnaRepository;
 
     @BeforeEach
     void setUp() {
-        dnaService = new DnaService();
+        dnaRepository = Mockito.mock(DnaRepository.class);
+        dnaService = new DnaService(dnaRepository);
     }
 
     @Test
