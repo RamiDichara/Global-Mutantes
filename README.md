@@ -228,7 +228,7 @@ mvn test
 
 1. Clonar el repo:
 ```bash
-git clone <url-repositorio>
+git clone https://github.com/RamiDichara/Global-Mutantes
 ```
 
 2. Acceder al proyecto:
@@ -261,13 +261,14 @@ java -jar target/MutantesGlobal-0.0.1-SNAPSHOT.jar
 ```
 
 Endpoints públicos:
-```bash
-https://<render-url>/mutant
-https://<render-url>/stats
+```diff
++ https://global-mutantes-vrne.onrender.com/swagger-ui/index.html#/dna-controller/isMutant
+- https://global-mutantes-vrne.onrender.com/swagger-ui/index.html#/stats-controller/getStats
 ```
 
 ## 👤 Autor
 
 Ramiro Dichara
+
 Proyecto desarrollado para el examen Global de Desarrollo.
 Implementación completa, validada y lista para despliegue.
