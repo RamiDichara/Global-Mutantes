@@ -261,9 +261,9 @@ java -jar target/MutantesGlobal-0.0.1-SNAPSHOT.jar
 ```
 
 Endpoints públicos:
-```diff
-+ https://global-mutantes-vrne.onrender.com/swagger-ui/index.html#/dna-controller/isMutant
-- https://global-mutantes-vrne.onrender.com/swagger-ui/index.html#/stats-controller/getStats
+```bash
+<font color= "#00FF00">https://global-mutantes-vrne.onrender.com/swagger-ui/index.html#/dna-controller/isMutant</font>
+<font color= "#00FFFF">https://global-mutantes-vrne.onrender.com/swagger-ui/index.html#/stats-controller/getStats</font>
 ```
 
 ## 👤 Autor
