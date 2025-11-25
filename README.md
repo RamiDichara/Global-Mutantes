@@ -73,14 +73,14 @@ Agregar:
 
 ## 🛠 Tecnologías Utilizadas
 
-*Java 17
-*Spring Boot
-*Spring Web
-*Spring Data JPA
-*Base de datos H2
-*Maven
-*JUnit 5
-*Mockito
+- Java 17
+- Spring Boot
+- Spring Web
+- Spring Data JPA
+- Base de datos H2
+- Maven
+- JUnit 5
+- Mockito
 
 ## 🧱 Arquitectura General del Proyecto
 
@@ -212,8 +212,11 @@ Contraseña: (vacía)
 Incluye:
 
 ✔ Tests unitarios del servicio
+
 ✔ Tests de algoritmos
+
 ✔ Tests de integración con H2
+
 ✔ Tests del /mutant y /stats
 
 Para ejecutarlos:

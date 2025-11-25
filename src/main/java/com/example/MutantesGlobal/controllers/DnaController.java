@@ -22,7 +22,9 @@ public class DnaController {
             summary = "Detecta si un ADN es mutante",
             responses = {
                     @ApiResponse(responseCode = "200", description = "ADN mutante"),
-                    @ApiResponse(responseCode = "403", description = "ADN no mutante")
+                    @ApiResponse(responseCode = "403", description = "ADN no mutante"),
+                    @ApiResponse(responseCode = "400", description = "Los datos ingresados son incorrectos, " +
+                            "por favor, ingrese un ADN nuevamente")
             }
     )
     public ResponseEntity<Void> isMutant(@Valid @RequestBody DnaRequest dnaRequest) {
