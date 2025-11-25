@@ -1,5 +1,6 @@
 package com.example.MutantesGlobal.services;
 
+import com.example.MutantesGlobal.dto.StatsResponse;
 import com.example.MutantesGlobal.entities.Dna;
 import com.example.MutantesGlobal.repositories.DnaRepository;
 import lombok.RequiredArgsConstructor;
@@ -194,6 +195,14 @@ public class DnaService {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Error generando hash ADN", e);
         }
+    }
+
+    public StatsResponse getStats() {
+        long countMutant = dnaRepository.countByMutantTrue();
+        long countHuman = dnaRepository.countByMutantFalse();
+
+        double ratio = countMutant == 0 ? 0.0 : countMutant / countHuman;
+        return new StatsResponse(countMutant, countHuman, ratio);
     }
 
 
