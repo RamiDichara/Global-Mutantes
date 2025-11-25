@@ -133,7 +133,9 @@ Tu proyecto quedó organizado así:
 Evalúa si un humano es mutante.
 
 ✔ 200 OK → Mutante
+
 ✘ 403 Forbidden → No mutante
+
 ⚠ 400 Bad Request → ADN inválido
 
 ### GET /stats
@@ -262,8 +264,8 @@ java -jar target/MutantesGlobal-0.0.1-SNAPSHOT.jar
 
 Endpoints públicos:
 ```bash
-<font color= "#00FF00">https://global-mutantes-vrne.onrender.com/swagger-ui/index.html#/dna-controller/isMutant</font>
-<font color= "#00FFFF">https://global-mutantes-vrne.onrender.com/swagger-ui/index.html#/stats-controller/getStats</font>
+https://global-mutantes-vrne.onrender.com/swagger-ui/index.html#/dna-controller/isMutant
+https://global-mutantes-vrne.onrender.com/swagger-ui/index.html#/stats-controller/getStats
 ```
 
 ## 👤 Autor
